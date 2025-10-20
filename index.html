@@ -3,20 +3,371 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Saúl Miñarro - Currículum</title>
+  <title>Saúl Miñarro - Currículum Profesional</title>
   <style>
-    body { font-family: Arial, sans-serif; padding: 20px; background-color: #f0f0f0; }
-    .perfil { text-align: center; }
-    .perfil img { width: 150px; border-radius: 50%; }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+      min-height: 100vh;
+      padding: 20px;
+      color: #333;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      background: white;
+      border-radius: 20px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+      overflow: hidden;
+      animation: fadeIn 0.8s ease-in;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .header {
+      background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+      color: white;
+      padding: 60px 40px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .header::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+      animation: pulse 4s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% {
+        transform: scale(1);
+        opacity: 0.5;
+      }
+      50% {
+        transform: scale(1.1);
+        opacity: 0.8;
+      }
+    }
+
+    .profile-img {
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      border: 6px solid white;
+      object-fit: cover;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      position: relative;
+      z-index: 1;
+      transition: transform 0.3s ease;
+    }
+
+    .profile-img:hover {
+      transform: scale(1.05);
+    }
+
+    .header h1 {
+      font-size: 2.5em;
+      margin: 20px 0 10px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .header h2 {
+      font-size: 1.3em;
+      font-weight: 300;
+      opacity: 0.95;
+      position: relative;
+      z-index: 1;
+    }
+
+    .content {
+      padding: 50px 40px;
+    }
+
+    .section {
+      margin-bottom: 40px;
+      animation: slideIn 0.6s ease-out forwards;
+      opacity: 0;
+    }
+
+    .section:nth-child(1) { animation-delay: 0.2s; }
+    .section:nth-child(2) { animation-delay: 0.4s; }
+    .section:nth-child(3) { animation-delay: 0.6s; }
+    .section:nth-child(4) { animation-delay: 0.8s; }
+
+    @keyframes slideIn {
+      from {
+        opacity: 0;
+        transform: translateX(-30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    .section-title {
+      font-size: 1.8em;
+      color: #1e3a8a;
+      margin-bottom: 20px;
+      padding-bottom: 10px;
+      border-bottom: 3px solid #3b82f6;
+      display: inline-block;
+    }
+
+    .about-text {
+      font-size: 1.1em;
+      line-height: 1.8;
+      color: #555;
+      text-align: justify;
+    }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+      margin-top: 20px;
+    }
+
+    .skill-card {
+      background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+      color: white;
+      padding: 25px;
+      border-radius: 15px;
+      text-align: center;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      cursor: pointer;
+    }
+
+    .skill-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 30px rgba(59, 130, 246, 0.4);
+    }
+
+    .skill-card h3 {
+      font-size: 1.3em;
+      margin-bottom: 10px;
+    }
+
+    .skill-card p {
+      font-size: 0.95em;
+      opacity: 0.9;
+    }
+
+    .contact-info {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 30px;
+      margin-top: 20px;
+    }
+
+    .contact-item {
+      flex: 1;
+      min-width: 250px;
+      background: #f8f9fa;
+      padding: 20px;
+      border-radius: 10px;
+      border-left: 4px solid #3b82f6;
+      transition: background 0.3s ease;
+    }
+
+    .contact-item:hover {
+      background: #e9ecef;
+    }
+
+    .contact-item strong {
+      color: #1e3a8a;
+      display: block;
+      margin-bottom: 8px;
+      font-size: 1.1em;
+    }
+
+    .social-links {
+      display: flex;
+      gap: 15px;
+      justify-content: center;
+      margin-top: 30px;
+    }
+
+    .social-btn {
+      display: inline-block;
+      width: 50px;
+      height: 50px;
+      background: #3b82f6;
+      color: white;
+      border-radius: 50%;
+      text-align: center;
+      line-height: 50px;
+      text-decoration: none;
+      font-size: 1.3em;
+      transition: all 0.3s ease;
+    }
+
+    .social-btn:hover {
+      background: #1e3a8a;
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(59, 130, 246, 0.4);
+    }
+
+    .timeline {
+      position: relative;
+      padding-left: 30px;
+      margin-top: 20px;
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 3px;
+      background: linear-gradient(to bottom, #1e3a8a, #3b82f6);
+    }
+
+    .timeline-item {
+      position: relative;
+      margin-bottom: 30px;
+      padding-left: 20px;
+    }
+
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -36px;
+      top: 5px;
+      width: 15px;
+      height: 15px;
+      border-radius: 50%;
+      background: #3b82f6;
+      border: 3px solid white;
+      box-shadow: 0 0 0 3px #3b82f6;
+    }
+
+    .timeline-item h3 {
+      color: #1e3a8a;
+      font-size: 1.3em;
+      margin-bottom: 5px;
+    }
+
+    .timeline-item .date {
+      color: #999;
+      font-size: 0.9em;
+      margin-bottom: 10px;
+    }
+
+    .timeline-item p {
+      color: #666;
+      line-height: 1.6;
+    }
+
+    @media (max-width: 768px) {
+      .header {
+        padding: 40px 20px;
+      }
+
+      .header h1 {
+        font-size: 2em;
+      }
+
+      .content {
+        padding: 30px 20px;
+      }
+
+      .section-title {
+        font-size: 1.5em;
+      }
+
+      .skills-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .contact-item {
+        min-width: 100%;
+      }
+    }
   </style>
 </head>
 <body>
-  <div class="perfil">
-    <h1>Saúl Miñarro</h1>
-    <h2>Universidad</h2>
-    <p>Estudiante de Inteligencia Artificial con interés en desarrollo web y análisis de datos.</p>
+  <div class="container">
+    <div class="header">
+      <img src="https://via.placeholder.com/180" alt="Saúl Miñarro" class="profile-img">
+      <h1>Saúl Miñarro</h1>
+      <h2>Ministerio de Sanidad</h2>
+    </div>
+
+    <div class="content">
+      <section class="section">
+        <h2 class="section-title">Sobre mí</h2>
+        <p class="about-text">
+          Funcionario del Cuerpo de Gestión de Sistemas e Informática de la Administración General del Estado. 
+          Actualmente desempeño el cargo de Jefe de Servicio en la Subdirección General de Servicios Digitales 
+          de Salud del Ministerio de Sanidad. Mi labor se centra en la transformación digital del sector sanitario, 
+          liderando proyectos de modernización de sistemas de información y servicios digitales que mejoran la 
+          atención ciudadana y la eficiencia de los servicios públicos de salud.
+        </p>
+      </section>
+
+      <section class="section">
+        <h2 class="section-title">Áreas de Interés</h2>
+        <div class="skills-grid">
+		  <div class="skill-card">
+            <h3>💼 Gestión de Proyectos Informáticos</h3>
+            <p>Dirección y coordinación de proyectos tecnológicos en sanidad e innovación digital</p>
+          </div>
+          <div class="skill-card">
+            <h3>🤖 Inteligencia Artificial</h3>
+            <p>Machine Learning, Deep Learning y procesamiento de lenguaje natural</p>
+          </div>
+          <div class="skill-card">
+            <h3>💻 Desarrollo Web</h3>
+            <p>Creación de aplicaciones web modernas y responsivas</p>
+          </div>        
+        </div>
+      </section>
+
+      <section class="section">
+        <h2 class="section-title">Contacto</h2>
+        <div class="contact-info">
+          <div class="contact-item">
+            <strong>📧 Email</strong>
+            sminarro@sanidad.gob.es
+          </div>
+          <div class="contact-item">
+            <strong>📍 Ubicación</strong>
+            Madrid, España
+          </div>
+        </div>
+
+        <div class="social-links">
+          <a href="#" class="social-btn" title="LinkedIn" onclick="event.preventDefault(); alert('Esta funcionalidad no está disponible por el momento');">in</a>
+          <a href="#" class="social-btn" title="GitHub" onclick="event.preventDefault(); alert('Esta funcionalidad no está disponible por el momento');">{ }</a>
+          <a href="mailto:sminarro@sanidad.gob.es" class="social-btn" title="Email">@</a>
+        </div>
+      </section>
+    </div>
   </div>
 </body>
 </html>
-
-
